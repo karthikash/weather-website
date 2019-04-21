@@ -62,7 +62,15 @@ app.get('/weather', (req, res) => {
             })
         })
     })
+})
 
+app.get('/current', (req, res) => {
+    forecast(req.query.latitude, req.query.longtitude, (err, forecastData) => {
+        if (err) return res.send({ err })
+        res.send({
+            weather: forecastData,
+        })
+    })
 })
 
 app.get('/help/*', (req, res) => {
